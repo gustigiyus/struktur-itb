@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        /* Tambahan style khusus hanya untuk tombol unduh agar rapi */
+        /* Tombol unduh */
         .btn-unduh {
             background-color: #86b323;
             color: white;
@@ -49,7 +49,7 @@
             clear: both;
             margin-bottom: 30px;
             position: relative;
-            background-color: white; /* Penting agar background gambar tidak transparan saat diunduh */
+            background-color: white; 
             padding: 20px;
         }
 
@@ -113,17 +113,50 @@
             text-align: center;
         }
 
+        /* FIX GARIS: Mengikuti Inspect Element di image_508a64.png */
         .org-chart .departments:before {
-            height: 220px;
+            content: "";
+            display: block;
+            width: 77%; /* Tetap 88% sesuai original */
+            height: 22px;
+            border-top: 2px solid #b0c9dc;
+            border-left: 2px solid #b0c9dc;
+            border-right: 2px solid #b0c9dc;
+            margin: 0; /* Ubah dari auto ke 0 */
+            margin-left: 5.6%; /* Geser agar center secara manual mengikuti kotak pertama dan terakhir */
+            top: 0px;
+            position: relative;
         }
 
-        .org-chart .departments-02 .columnFour .lvl-b {
-            background: #20384a;
-            min-height: 0;
+        .org-chart .departments-02:before {
+            height: 122px;
         }
 
-        .org-chart .departments-03 li span {
-            background: #145b91 !important;
+        .org-chart .department {
+            width: 10%;
+            float: left;
+            margin: 0px 12px;
+        }
+
+        /* PERBAIKAN SPACE FAKULTAS */
+        .org-chart .dept-fakultas {
+            width: 8% !important; 
+            margin: 0px 8px !important;
+        }
+
+        .org-chart .departments-02 .department {
+            top: -100px;
+        }
+
+        .org-chart .department:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 22px;
+            border-left: 2px solid #b0c9dc;
+            left: 50%;
+            top: -22px;
         }
 
         .org-chart .board {
@@ -165,10 +198,6 @@
             clear: both;
         }
 
-        .org-chart ul.columnTwo li ul li {
-            width: 100%
-        }
-
         .org-chart ul.columnTwo li {
             width: 22%;
             float: left;
@@ -189,119 +218,6 @@
             width: 49% !important;
             margin: 0px 15px !important;
             border-top-style: solid !important;
-        }
-
-        .org-chart ul.columnThree {
-            position: relative;
-            width: 100%;
-            display: block;
-            clear: both;
-        }
-
-        .org-chart ul.columnThree li:first-child {
-            width: 30%;
-            float: left;
-            margin-left: 0;
-        }
-
-        .org-chart ul.columnThree li {
-            width: 30%;
-            margin-left: 5%;
-            float: left;
-        }
-
-        .org-chart ul.columnThree li:last-child {
-            width: 30%;
-            float: right;
-            margin-left: 0;
-        }
-
-        .org-chart ul.columnThree:before {
-            content: "";
-            display: block;
-            position: relative;
-            width: 80%;
-            height: 10px;
-            border-top: 2px solid #b0c9dc;
-            margin: 0 auto;
-            top: 40px;
-        }
-
-        .org-chart .departments {
-            width: 100%;
-            display: block;
-            clear: both;
-        }
-
-        .org-chart .departments:before {
-            content: "";
-            display: block;
-            width: 88%;
-            height: 22px;
-            border-top: 2px solid #b0c9dc;
-            border-left: 2px solid #b0c9dc;
-            border-right: 2px solid #b0c9dc;
-            margin: 0 auto;
-            top: 0px;
-        }
-
-        .org-chart .departments-02:before {
-            height: 122px;
-        }
-
-        .columnFour:before {
-            height: 120px !important
-        }
-
-        .org-chart .department {
-            width: 10%;
-            float: left;
-            margin: 0px 12px;
-        }
-
-        .org-chart .departments-02 .department {
-            top: -100px;
-        }
-
-        .org-chart .department-top {
-            width: 9.0%;
-            float: left;
-            margin: 0px 4px;
-        }
-
-        .org-chart .department:after {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 10px;
-            height: 22px;
-            border-left: 2px solid #b0c9dc;
-            left: 50%;
-            top: -22px;
-        }
-
-        .org-chart .columnTwo .department::after {
-            display: none;
-        }
-
-        .org-chart .departments-04:after {
-            height: 120px;
-        }
-
-        .org-chart .department:first-child:after {
-            display: none;
-        }
-
-        .org-chart .department:last-child:after {
-            display: none;
-        }
-
-        .org-chart .department.central {
-            background: #F5EEC9;
-        }
-
-        .org-chart .department.central:after {
-            display: none;
         }
 
         .org-chart .department li {
@@ -332,92 +248,14 @@
             padding: 0 0 10px 5%;
         }
 
+        .columnTwo .department:after {
+    display: none !important;
+}
+
         @media all and (max-width: 767px) {
-            .org-chart .board:before {
-                height: 130px;
-            }
-
-            .org-chart .board {
-                margin: 0px;
-                width: 100%;
-            }
-
-            .org-chart .board::before {
-                display: none;
-            }
-
-            .org-chart .departments:before {
-                border: none;
-                height: 0;
-            }
-
-            .org-chart .department {
-                float: none;
-                width: 100%;
-                margin-left: 0;
-                background: #fff;
-                margin-bottom: 40px;
-            }
-
-            .org-chart .department:before {
-                content: "";
-                display: block;
-                position: absolute;
-                width: 15px;
-                height: 60px;
-                border-left: 2px solid #b0c9dc;
-                z-index: 1;
-                top: -45px;
-                left: 0%;
-                margin-left: -2px;
-            }
-
-            .org-chart .department:after {
-                display: none;
-            }
-
-            .org-chart .department:first-child:before {
-                display: none;
-            }
-
-            .org-chart ul.columnTwo {
-                height: auto;
-            }
-
-            .org-chart .department {
-                border-left: 2px solid #b0c9dc;
-            }
-
-            .org-chart ul.columnOne li {
-                width: 100%;
-            }
-
-            .org-chart ul.columnTwo li {
-                width: 100%;
-                display: block;
-                clear: both;
-                margin: 0 0 20px 0 !important;
-            }
-
-            .org-chart ul.columnTwo {
-                float: left;
-            }
-
-            .org-chart .lvl-b {
-                min-height: auto;
-            }
-
-            .org-chart ul.columnTwo li ul li {
-                margin-bottom: 0 !important
-            }
-
-            .org-chart .departments-02 .department {
-                top: 0
-            }
-
-            .columnFour span {
-                margin: 0 !important;
-            }
+            .org-chart .board:before { display: none; }
+            .org-chart .departments:before { border: none; height: 0; }
+            .org-chart .department { float: none; width: 100%; margin-left: 0; background: #fff; margin-bottom: 40px; border-left: 2px solid #b0c9dc; }
         }
     </style>
 </head>
@@ -466,13 +304,13 @@
                                         <a href="https://itb.ac.id/wakil-rektor-bidang-akademik-dan-kemahasiswaan">Wakil Rektor Bidang Akademik dan Kemahasiswaan</a>
                                     </span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-pengembangan-pendidikan'"><a href="https://itb.ac.id/direktorat-pengembangan-pendidikan">Direktorat Pengembangan Pendidikan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-penerimaan-mahasiswa'"><a href="https://itb.ac.id/direktorat-penerimaan-mahasiswa">Direktorat Penerimaan Mahasiswa</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-persiapan-bersama'"><a href="https://itb.ac.id/direktorat-persiapan-bersama">Direktorat Persiapan Bersama</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-pendidikan'"><a href="https://itb.ac.id/direktorat-pendidikan">Direktorat Pendidikan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-kemahasiswaan'"><a href="https://itb.ac.id/direktorat-kemahasiswaan">Direktorat Kemahasiswaan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-pendidikan-profesional-berkelanjutan'"><a href="https://itb.ac.id/direktorat-pendidikan-profesional-berkelanjutan">Direktorat Pendidikan Profesional Berkelanjutan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/unit-pelaksana-teknis-perpustakaan'"><a href="https://itb.ac.id/unit-pelaksana-teknis-perpustakaan">UPT Perpustakaan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Pengembangan Pendidikan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Penerimaan Mahasiswa</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Persiapan Bersama</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Pendidikan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Kemahasiswaan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Pendidikan Profesional Berkelanjutan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>UPT Perpustakaan</a></span></li>
                                     </ul>
                                 </li>
 
@@ -481,12 +319,12 @@
                                         <a href="https://itb.ac.id/wakil-rektor-bidang-sumber-daya">Wakil Rektor Bidang Sumber Daya</a>
                                     </span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-sumber-daya-manusia'"><a href="https://itb.ac.id/direktorat-sumber-daya-manusia">Direktorat Sumber Daya Manusia</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-sarana-prasarana-dan-sistem-informasi'"><a href="https://itb.ac.id/direktorat-sarana-prasarana-dan-sistem-informasi">Direktorat Sarana Prasarana dan Sistem Informasi</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/unit-pelaksana-teknis-keamanan-kesehatan-keselamatan-kerja-dan-lingkungan'"><a href="https://itb.ac.id/unit-pelaksana-teknis-keamanan-kesehatan-keselamatan-kerja-dan-lingkungan">UPT K3L</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/unit-pelaksana-teknis-saraga-dan-sabuga'"><a href="https://itb.ac.id/unit-pelaksana-teknis-saraga-dan-sabuga">UPT Saraga dan Sabuga</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/unit-pelaksana-teknis-layanan-kesehatan'"><a href="https://itb.ac.id/unit-pelaksana-teknis-layanan-kesehatan">UPT Layanan Kesehatan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/unit-pelaksana-teknis-layanan-bahasa'"><a href="https://itb.ac.id/unit-pelaksana-teknis-layanan-bahasa">UPT Layanan Bahasa</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Sumber Daya Manusia</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Sarana Prasarana dan Sistem Informasi</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>UPT Keamanan, Kesehatan, Keselamatan Kerja dan Lingkungan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>UPT Saraga dan Sabuga</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>UPT Layanan Kesehatan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>UPT Layanan Bahasa</a></span></li>
                                     </ul>
                                 </li>
 
@@ -495,29 +333,29 @@
                                         <a href="https://itb.ac.id/wakil-rektor-bidang-keuangan-perencanaan-dan-pengembangan">Wakil Rektor Bidang Keuangan, Perencanaan, dan Pengembangan</a>
                                     </span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-pengembangan'"><a href="https://itb.ac.id/direktorat-pengembangan">Direktorat Pengembangan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-perencanaan'"><a href="https://itb.ac.id/direktorat-perencanaan">Direktorat Perencanaan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-keuangan'"><a href="https://itb.ac.id/direktorat-keuangan">Direktorat Keuangan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-logistik'"><a href="https://itb.ac.id/direktorat-logistik">Direktorat Logistik</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Pengembangan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Perencanaan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Keuangan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Logistik</a></span></li>
                                     </ul>
                                 </li>
 
-                                <li class="department">
+                                <li class="department dept-fakultas">
                                     <span class="lvl-b">Fakultas/Sekolah</span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-ilmu-dan-teknologi-kebumian'"><a href="https://itb.ac.id/pimpinan-fakultas-ilmu-dan-teknologi-kebumian">FITB</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-matematika-dan-ilmu-pengetahuan-alam'"><a href="https://itb.ac.id/pimpinan-fakultas-matematika-dan-ilmu-pengetahuan-alam">FMIPA</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-seni-rupa-dan-desain'"><a href="https://itb.ac.id/pimpinan-fakultas-seni-rupa-dan-desain">FSRD</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-teknologi-industri'"><a href="https://itb.ac.id/pimpinan-fakultas-teknologi-industri">FTI</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-teknik-mesin-dan-dirgantara'"><a href="https://itb.ac.id/pimpinan-fakultas-teknik-mesin-dan-dirgantara">FTMD</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-teknik-pertambangan-dan-perminyakan'"><a href="https://itb.ac.id/pimpinan-fakultas-teknik-pertambangan-dan-perminyakan">FTTM</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-fakultas-teknik-sipil-dan-lingkungan'"><a href="https://itb.ac.id/pimpinan-fakultas-teknik-sipil-dan-lingkungan">FTSL</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-sekolah-arsitektur-perencanaan-dan-pengembangan-kebijakan'"><a href="https://itb.ac.id/pimpinan-sekolah-arsitektur-perencanaan-dan-pengembangan-kebijakan">SAPPK</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-sekolah-bisnis-dan-manajemen'"><a href="https://itb.ac.id/pimpinan-sekolah-bisnis-dan-manajemen">SBM</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-sekolah-farmasi'"><a href="https://itb.ac.id/pimpinan-sekolah-farmasi">SF</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-sekolah-ilmu-dan-teknologi-hayati'"><a href="https://itb.ac.id/pimpinan-sekolah-ilmu-dan-teknologi-hayati">SITH</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/pimpinan-sekolah-teknik-elektro-dan-informatika'"><a href="https://itb.ac.id/pimpinan-sekolah-teknik-elektro-dan-informatika">STEI</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/sekolah-pascasarjana-ilmu-dan-teknologi-multidisiplin'"><a href="https://itb.ac.id/sekolah-pascasarjana-ilmu-dan-teknologi-multidisiplin">SPITM</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FITB</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FMIPA</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FSRD</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FTI</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FTMD</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FTTM</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>FTSL</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>SAPPK</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>SBM</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>SF</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>SITH</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>STEI</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>SPITM</a></span></li>
                                     </ul>
                                 </li>
 
@@ -526,9 +364,9 @@
                                         <a href="https://itb.ac.id/wakil-rektor-bidang-riset-dan-inovasi">Wakil Rektor Bidang Riset dan Inovasi</a>
                                     </span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-riset-dan-inovasi'"><a href="https://itb.ac.id/direktorat-riset-dan-inovasi">Direktorat Riset dan Inovasi</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-pengabdian-masyarakat-dan-layanan-kepakaran'"><a href="https://itb.ac.id/direktorat-pengabdian-masyarakat-dan-layanan-kepakaran">Direktorat Pengabdian Masyarakat</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-kawasan-sains-dan-teknologi'"><a href="https://itb.ac.id/direktorat-kawasan-sains-dan-teknologi">Direktorat Kawasan Sains dan Teknologi</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Riset dan Inovasi</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Pengabdian Masyarakat dan Layanan Kepakaran</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Kawasan Sains dan Teknologi</a></span></li>
                                     </ul>
                                 </li>
 
@@ -537,11 +375,11 @@
                                         <a href="https://itb.ac.id/wakil-rektor-bidang-komunikasi-kemitraan-kealumnian-dan-administrasi">Wakil Rektor Bidang Komunikasi, Kemitraan, Kealumnian, dan Administrasi</a>
                                     </span>
                                     <ul class="sections">
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-kemitraan'"><a href="https://itb.ac.id/direktorat-kemitraan">Direktorat Kemitraan</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-kealumnian-dan-pengembangan-karir'"><a href="https://itb.ac.id/direktorat-kealumnian-dan-pengembangan-karir">Direktorat Kealumnian</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/direktorat-komunikasi-dan-hubungan-masyarakat'"><a href="https://itb.ac.id/direktorat-komunikasi-dan-hubungan-masyarakat">Direktorat Komunikasi dan Humas</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/biro-administrasi-umum'"><a href="https://itb.ac.id/biro-administrasi-umum">Biro Administrasi Umum</a></span></li>
-                                        <li class="section"><span onclick="window.location='https://itb.ac.id/biro-hukum'"><a href="https://itb.ac.id/biro-hukum">Biro Hukum</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Kemitraan</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Kealumnian dan Pengembangan Karir</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Direktorat Komunikasi dan Hubungan Masyarakat</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Biro Administrasi Umum</a></span></li>
+                                        <li class="section"><span onclick="window.location='#'"><a>Biro Hukum</a></span></li>
                                     </ul>
                                 </li>
 
@@ -567,11 +405,10 @@
     <script>
         function downloadChart() {
             const chartArea = document.getElementById('chart-container');
-            
             html2canvas(chartArea, {
-                scale: 2, // Meningkatkan kualitas gambar (retina/HD)
-                useCORS: true, // Untuk menangani gambar jika ada dari URL luar
-                backgroundColor: "#ffffff" // Memastikan background tidak transparan
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff"
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'struktur-organisasi.png';
@@ -581,5 +418,4 @@
         }
     </script>
 </body>
-
 </html>
