@@ -117,13 +117,14 @@
         .org-chart .departments:before {
             content: "";
             display: block;
-            width: 77%; /* Tetap 88% sesuai original */
+            width: 77.6%; /* Tetap 88% sesuai original */
             height: 22px;
             border-top: 2px solid #b0c9dc;
             border-left: 2px solid #b0c9dc;
             border-right: 2px solid #b0c9dc;
+            border-right: none;
             margin: 0; /* Ubah dari auto ke 0 */
-            margin-left: 5.6%; /* Geser agar center secara manual mengikuti kotak pertama dan terakhir */
+            margin-left: 5.7%; /* Geser agar center secara manual mengikuti kotak pertama dan terakhir */
             top: 0px;
             position: relative;
         }
@@ -249,8 +250,9 @@
         }
 
         .columnTwo .department:after {
-    display: none !important;
-}
+            display: none !important;
+        }
+
 
         @media all and (max-width: 767px) {
             .org-chart .board:before { display: none; }
